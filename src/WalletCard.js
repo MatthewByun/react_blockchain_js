@@ -20,7 +20,6 @@ const WalletCard = () => {
         setBalance(bal);
 
         const contactList = new web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
-        console.log(contactList);
         setContactList(contactList);
         // const abi = new web3.eth.abi.encodeFunctionSignature();
         const counter = await contactList.methods.count().call();
@@ -32,21 +31,35 @@ const WalletCard = () => {
         }
     }
 
-    // console.log('cin',contacts);
+    const handleOnClickCreate = async () => {
+        const contactList = new web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
+        console.log('123',document.getElementsByClassName('contact')[0].value + " + " +  
+        document.getElementsByClassName('contact')[1].value)
+        const newContact = await contactList.methods.createContact('kha', '123456').call();
+        console.log('456',newContact)
+        setContacts((contacts) => [...contacts, newContact]);
+    }
+    console.log('cin',contacts);
     return (
         <>
             <div style={{ justifyContent: 'center' }}>
                 <button onClick={handleOnClick}>Connect wallet</button>
                 <h4>Connect to wallet</h4>
                 <div>
-                    <h4>Account: </h4>{account}
+                    <div>
+                        <h4>Account: </h4>{account}
+                    </div>
+                    <div>
+                        <h4>Balance: </h4>{balance}
+                    </div>
+                    <input type='text' className='contact' />
+                    <input type='text' className='contact' />
+                    <button onClick={handleOnClickCreate}>Create Contact</button>
                 </div>
-                <div>
-                    <h4>Balance: </h4>{balance}
-                </div>
+
                 <ul>
                     {contacts.map((item, index) => {
-                        {console.log('123',item.name)}
+                        { console.log('123', item.name) }
                         return <li key={index}>
                             <p>Name: {item.name}</p>
                             <p>Phone: {item.phone}</p>

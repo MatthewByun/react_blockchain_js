@@ -1,10 +1,35 @@
-export const CONTACT_ADDRESS = '0xEF6468e0f460AD8082ED7aa929e380906F280418';
+export const CONTACT_ADDRESS = '0x5265462ac1BDAC3aB488F784e4a6d9026e5a4DaC';
 
 export const CONTACT_ABI = [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "phone",
+        "type": "string"
+      }
+    ],
+    "name": "ContactCreated",
+    "type": "event"
   },
   {
     "inputs": [
